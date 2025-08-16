@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: mydep2
+  labels:
+    type: proxy
+  namespace: testnamespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: baigan
+  template:
+    metadata:
+      name: pod-baigan
+      labels:
+        app: baigan
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: intelliqit
+...
+

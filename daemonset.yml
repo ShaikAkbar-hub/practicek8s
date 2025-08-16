@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: mydaemon
+  labels:
+    app: proxy
+spec:
+  selector:
+    matchLabels:
+      app: proxy
+  template:
+    metadata:
+      name: ghost
+      labels: 
+        app: proxy
+    spec: 
+      containers:
+        - name: myghost
+          image: ghost
+          env:
+            - name: NODE_ENV
+              value: development
+          ports:
+            - containerPort: 2368
+              hostPort: 8888
+...

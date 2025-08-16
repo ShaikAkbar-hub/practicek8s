@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydep
+  labels:
+    app: proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: baigan
+  template:
+    metadata:
+      name: pod-baigan
+      labels:
+        app: baigan
+    spec:
+      containers: 
+        - name: mynginx
+          image: nginx
+          ports:
+            - containerPort: 8080
+              hostPort: 5555
+...
+
