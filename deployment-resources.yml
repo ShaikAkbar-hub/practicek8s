@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-depl
+  labels:
+    app: author
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: author
+  template:
+    metadata:
+      name: resource-pod
+      labels:
+        app: author
+    spec:
+      containers:
+        - name: resource-cont
+          image: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: intelliqit
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "600Mi"
+...
