@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blue-nginx-dep
+  name: green-dep
   labels:
     app: proxy
 spec:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers: 
         - name: mynginx
-          image: nginx:1.27
+          image: nginx:1.28
           ports:
             - containerPort: 8080
               hostPort: 5555
